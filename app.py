@@ -6,6 +6,8 @@ load_dotenv()
 
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather?"
 API_KEY = os.getenv("MY_KEY")
+if not API_KEY:
+    raise("API key not found")
 
 def get_weather():
     city = input("Input city name here: ").capitalize()
@@ -21,8 +23,8 @@ def get_response(url):
         print(e)
 
 def kelvin_to_celsius_fahrenheit(kelvin):
-    celsius = round(kelvin - 273.15, 0)
-    fahrenheit = round(celsius * (9/5) + 32, 0)
+    celsius = int(round(kelvin - 273.15, 0))
+    fahrenheit = int(round(celsius * (9/5) + 32, 0))
 
     return celsius, fahrenheit
 
